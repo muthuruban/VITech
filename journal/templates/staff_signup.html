@@ -1,0 +1,68 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Login Form with validation Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <!--    <link rel="stylesheet" href="../static/css/style.css">-->
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap">
+    <h2>Login</h2>
+    <form id="login-form" method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="col-12 register-field">
+            <div class="alert alert-block alert-danger">
+                <ul>
+                    <li>
+                        Please enter a correct username and password. Note that both fields may be case-sensitive.
+                    </li>
+                    <li>
+                        Username and password should not be similar
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <p>
+            <input type="text" id="name" name="name" placeholder="Full Name" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="text" id="username" name="username" placeholder="Username" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="email" id="mail_id" name="mail_id" placeholder="Mail" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="text" id="phone_number" name="phone_number" placeholder="Phone Number" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="text" id="staff_id" name="staff_id" placeholder="Staff Id" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="date" id="date_joined" name="date_joined" placeholder="Date Joined" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="password" id="password1" name="password1" placeholder="Password" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="password" id="password2" name="password2" placeholder="Confirm Password" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="submit" id="signup" value="Sign Up">
+        </p>
+    </form>
+</div><!--login-form-wrap-->
+</body>
+</html>

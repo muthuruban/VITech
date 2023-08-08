@@ -1,0 +1,45 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Login Form with validation Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap">
+    <h2>Login</h2>
+    <form id="login-form" method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="col-12 register-field">
+            <div class="alert alert-block alert-danger">
+                <ul>
+                    <li>
+                        Please enter a correct username and password.Note that both fields may be case-sensitive.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <p>
+            <input type="text" id="username" name="username" placeholder="Username" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="password" id="password" name="password" placeholder="Password" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="submit" id="login" value="Login">
+        </p>
+    </form>
+    <div id="create-account-wrap">
+        <p>Not a member? <a href="{% url 'staff_signup' %}">Create Account</a>
+        <p>
+    </div><!--create-account-wrap-->
+</div><!--login-form-wrap-->
+</body>
+</html>
