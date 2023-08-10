@@ -11,6 +11,8 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # Staff
-    path('journal/staff/signup/', views.staff_signup, name='staff_signup'),
-    # path('journal/staff/logout/', views.staff_logout, name='staff_logout'),
+    path('staff/signup/', views.staff_signup, name='staff_signup'),
+    path('admin/', views.admin_login, name='admin_login'),
+    path('admin/dashboard/', views.admin_view, name='admin_dashboard'),
+
 ]
