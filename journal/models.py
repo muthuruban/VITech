@@ -18,9 +18,10 @@ class Staff(AbstractUser):
     username = models.CharField(max_length=30, unique=True)
     mail_id = models.EmailField(max_length=40)
     phone_number = models.CharField(max_length=10)
-    dept_name = models.ForeignKey(Departments, on_delete=models.SET_NULL, null=True, related_name='staff_members')
+    date_birth = models.DateField(null=True, blank=True)
+    dept_name = models.CharField(max_length=15,blank=True)
     staff_id = models.CharField(max_length=20)
-    date_joined = models.DateField()
+    date_Ofjoin = models.DateField(null=True,blank=True)
 
 class Journals(models.Model):
     title = models.CharField(max_length=50)

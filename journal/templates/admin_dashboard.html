@@ -1,3 +1,31 @@
-<h1>
-    Hiiii This is the admin page
-</h1>
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Login Form with validation Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../static/css/admin_styles.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap">
+    <h2>Admin Login</h2>
+    <form id="login-form" method="post">
+        {% csrf_token %}
+        <p>
+            <input type="text" id="dept_number" name="dept_number" placeholder="Department Number" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="text" id="dept_name" name="dept_name" placeholder="Department Name" required><i
+                class="validation"><span></span><span></span></i>
+        </p>
+        <p>
+            <input type="submit" id="submit" value="Add">
+        </p>
+    </form>
+    <br><br><br>
+</div><!--login-form-wrap-->
+</body>
+</html>

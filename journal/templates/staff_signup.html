@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
 body, html {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -85,45 +85,48 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     padding: 20px;
   }
 }
-</style>
+
+    </style>
 </head>
 <body>
 
 <h2></h2>
 <div class="bg-img">
-  <form action=" " class="container">
-    <h1>User Login</h1>
-    <label for="name"><b>Full Name</b></label>
-    <input type="text" placeholder="Full Name" name="name" required>
+    <form action=" " class="container" method="post">
+        {% csrf_token %}
+        <h1>User Login</h1>
+        <label for="name"><b>Full Name</b></label>
+        <input type="text" id="name" placeholder="Full Name" name="name" required>
 
-    <label for="email"><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required>
+        <label for="username"><b>Username</b></label>
+        <input type="text" id="username" placeholder="Username" name="username" required>
 
-    <label for="user"><b>Username</b></label>
-    <input type="text" placeholder="Username" name="user" required>
+        <label for="mail_id"><b>Email</b></label>
+        <input type="email" id="mail_id" placeholder="Enter Email" name="mail_id" required>
 
-    <label for="staffId"><b>Staff Id</b></label>
-    <input type="text" placeholder="Staff Id" name="staffId" required>
+        <label for="phone_number"><b>Phone Number</b></label>
+        <input type="text" id="phone_number" placeholder="+91" name="phone_number" required>
 
-    <label for="number"><b>Phone Number</b></label>
-    <input type="text" placeholder="+91" name="number" required>
+        <label for="staff_id"><b>Staff Id</b></label>
+        <input type="text" id="staff_id" placeholder="Staff Id" name="staff_id" required>
 
-    <label for="dob"><b>Date of Birth</b></label>
-    <input type="date" name="dob" required>
+        <label for="date_birth"><b>Date of Birth</b></label>
+        <input type="date" id="date_birth" name="date_birth" required>
 
-    <label for="department"><b>Department</b></label>
-    <select name="department" required>
-      <option value="" disabled selected>Select department</option>
-      <option value="CSE">CSE</option>
-      <option value="ECE">ECE</option>
-      <option value="EEE">EEE</option>
-      <option value="AIDS">AIDS</option>
-      <option value="MECH">MECH</option>
-      <option value="MECHO">MECHO</option>
-    </select>
+        <label for="date_Ofjoin"><b>Date of Join</b></label>
+        <input type="date" id="date_Ofjoin" name="date_Ofjoin">
 
-    <button type="submit" class="btn">Login</button>
-  </form>
+        <label for="dept_name"><b>Department</b></label>
+        <input type="text" id="dept_name" placeholder="Department Name" name="dept_name">
+
+        <label for="password1"><b>Password</b></label>
+        <input type="password" id="password1" placeholder="Password" name="password1" required>
+
+        <label for="password2"><b>Confirm Password</b></label>
+        <input type="password" id="password2" placeholder="Confirm Password" name="password2" required>
+
+        <button type="submit" class="btn">SignUp</button>
+    </form>
 </div>
 
 </body>

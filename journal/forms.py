@@ -12,7 +12,7 @@ class StaffSignupForm(UserCreationForm):
 
     class Meta:
         model = Staff
-        fields = ('name', 'username', 'mail_id', 'phone_number', 'staff_id', 'date_joined')
+        fields = ('name', 'username', 'mail_id', 'phone_number', 'staff_id','date_birth', 'date_Ofjoin','dept_name')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

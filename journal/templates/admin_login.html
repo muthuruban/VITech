@@ -1,42 +1,82 @@
-<!--<!DOCTYPE html>-->
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>HTML5 Login Form with validation Example</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="../static/css/admin_styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
 
+.bg-img {
+  min-height: 380px;
+  background-image: url("img_nature.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.container {
+  width: 90%; /* Adjusted width for mobile view */
+  max-width: 400px;
+  padding: 20px; /* Adjusted padding for better mobile appearance */
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.container h1 {
+  font-size: 24px; /* Adjusted font size for mobile */
+  margin-bottom: 15px; /* Improved spacing */
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px; /* Adjusted padding for mobile */
+  margin: 6px 0;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.btn {
+  background-color: #08a76d;
+  color: white;
+  padding: 10px; /* Adjusted padding for mobile */
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+</style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div id="login-form-wrap">
-    <h2>Admin Login</h2>
-    <form id="login-form" method="post">
-        {% csrf_token %}
-        {% if form.errors %}
-        <div class="col-12 register-field">
-            <div class="alert alert-block alert-danger">
-                <ul>
-                    <li>
-                        Please enter a correct username and password.Note that both fields may be case-sensitive.
-                    </li>
-                </ul>
-            </div>
-        </div>
-        {% endif %}
-        <p>
-            <input type="text" id="username" name="username" placeholder="Admin Name" required><i
-                class="validation"><span></span><span></span></i>
-        </p>
-        <p>
-            <input type="password" id="password" name="password" placeholder="Password" required><i
-                class="validation"><span></span><span></span></i>
-        </p>
-        <p>
-            <input type="submit" id="login" value="Login">
-        </p>
-    </form>
-    <br><br><br>
-</div><!--login-form-wrap-->
+
+<div class="bg-img">
+  <form action=" " class="container" method="post">
+    {% csrf_token %}
+    <h1>Admin Login</h1>
+    <label for="username"><b>Email</b></label>
+    <input type="text" id="username" placeholder="Enter Username" name="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" id="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit" class="btn">Login</button>
+  </form>
+</div>
+
 </body>
 </html>

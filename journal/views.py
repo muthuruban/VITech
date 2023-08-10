@@ -1,8 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from journal.forms import StaffLoginForm, StaffSignupForm, AdminLoginForm
+from journal.models import Departments
 
 
 # Create your views here.
@@ -26,6 +28,7 @@ def index(request):
 
 
 def staff_signup(request):
+    departments = Departments.objects.all()
     if request.method == 'POST':
         form = StaffSignupForm(request.POST)
         if form.is_valid():
@@ -36,7 +39,13 @@ def staff_signup(request):
             print(form.errors)
     else:
         form = StaffSignupForm()
-    return render(request, 'staff_signup.html', {'form': form})
+    return render(request, 'staff_signup.html', {'form': form, 'departments': departments})
+
+
+@login_required(login_url='index')
+def staff_home(request):
+    user = request.user
+    return render(request, 'staff_home.html', {'user': user})
 
 
 def admin_login(request):
@@ -57,4 +66,17 @@ def admin_login(request):
 
 
 def admin_view(request):
+    return render(request, 'admin_dashboard.html')
+
+
+def add_department(request):
+    print(request.method)
+    if request.method == 'POST':
+        dept_number = request.POST.get('dept_number')
+        dept_name = request.POST.get('dept_name')
+
+        # dept_number = request.POST.get('dept_number')
+        dept = Departments.objects.create(dept_number=dept_number, dept_name=dept_name)
+        dept.save()
+        return redirect('index')
     return render(request, 'admin_dashboard.html')
