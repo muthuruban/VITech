@@ -1,0 +1,80 @@
+.card-container {
+    position: fixed;
+    top: 20px;
+    right: 3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: auto;
+    height: auto;
+}
+
+.department-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-container2 {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    width: 70%;
+    height: 85%;
+}
+
+.table-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-height: 85%;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+thead th {
+    background-color: #f1f1f1;
+    text-align: left;
+    padding: 10px;
+}
+
+tbody td {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.manage-journal-btn {
+  background-color: #08a76d;
+  color: white;
+  padding: 10px; /* Adjusted padding for mobile */
+  border: none;
+  cursor: pointer;
+  width: auto;
+  border-radius: 5px;
+}
+
+.manage-journal-btn:hover {
+  opacity: 0.9;
+}
+
+.dept-add-btn {
+  background-color: #08a76d;
+  color: white;
+  padding: 8px; /* Adjusted padding for mobile */
+  border: none;
+  cursor: pointer;
+  width: auto;
+  border-radius: 5px;
+}
+
+.dept-add-btn:hover {
+  opacity: 0.9;
+}

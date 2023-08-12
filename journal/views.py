@@ -66,7 +66,8 @@ def admin_login(request):
 
 
 def admin_view(request):
-    return render(request, 'admin_dashboard.html')
+    departments = Departments.objects.all()
+    return render(request, 'admin_dashboard.html',{'departments': departments})
 
 
 def add_department(request):

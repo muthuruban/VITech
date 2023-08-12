@@ -55,6 +55,9 @@ input[type="text"], input[type="password"] {
   width: 100%;
   border-radius: 5px;
 }
+.hyper-link {
+  color: #08a76d;
+}
 
 .btn:hover {
   opacity: 0.9;
@@ -75,6 +78,8 @@ input[type="text"], input[type="password"] {
     <input type="password" id="psw" placeholder="Enter Password" name="password" required>
 
     <button type="submit" class="btn">Login</button>
+    <br><br>
+    <label>Don't have account? <a class="hyper-link" href="{% url 'staff_signup' %}">Sign Up</a></label>
   </form>
 </div>
 </body>

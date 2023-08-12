@@ -1,31 +1,61 @@
-<!--<!DOCTYPE html>-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>HTML5 Login Form with validation Example</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="../static/css/admin_styles.css">
-
+    <link rel="stylesheet" href="../../static/css/admin_dashboard.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div id="login-form-wrap">
-    <h2>Admin Login</h2>
-    <form id="login-form" method="post">
-        {% csrf_token %}
-        <p>
-            <input type="text" id="dept_number" name="dept_number" placeholder="Department Number" required><i
-                class="validation"><span></span><span></span></i>
-        </p>
-        <p>
-            <input type="text" id="dept_name" name="dept_name" placeholder="Department Name" required><i
-                class="validation"><span></span><span></span></i>
-        </p>
-        <p>
-            <input type="submit" id="submit" value="Add">
-        </p>
-    </form>
-    <br><br><br>
-</div><!--login-form-wrap-->
+<div class="card-container2">
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Journal Title</th>
+                <th>Journal ISSN No</th>
+                <th>Publisher</th>
+                <th>Staff Name</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!-- Table rows will be dynamically generated here -->
+            </tbody>
+        </table>
+        <br>
+        <button type="button" class="manage-journal-btn" name="manage-journal">Manage</button>
+    </div>
+</div>
+
+<div class="card-container">
+    <div class="department-container">
+    <h3>Departments</h3>
+        <table>
+            <tr>
+                <th>Dept Number</th>
+                <th>Dept Name</th>
+                <th>No of Faculties</th>
+            </tr>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.dept_number }}</td>
+                    <td>{{ department.dept_name }}</td>
+                    <td>{{ department.no_faculty }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button type="button" class="dept-add-btn" name="dept-add-btn">Add Dept</button>
+    </div>
+</div>
+
+<!--login-form-wrap-->
+</div><!--card-container-->
 </body>
 </html>
