@@ -54,7 +54,7 @@ tbody td {
 .manage-journal-btn {
   background-color: #08a76d;
   color: white;
-  padding: 10px; /* Adjusted padding for mobile */
+  padding: 10px;
   border: none;
   cursor: pointer;
   width: auto;
