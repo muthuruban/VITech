@@ -2,60 +2,276 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HTML5 Login Form with validation Example</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="../../static/css/admin_dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Admin Dashboard</title>
+    <style>/* Reset some default styles */
+
+
+        /* Basic styling for the dashboard */
+        .dashboard {
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        /* Header styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logout {
+            text-decoration: none;
+            color: #fff;
+            background-color: #4caf50;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Filter styling */
+        .filter {
+            margin-bottom: 20px;
+        }
+        .department-table {
+            width: 100%;
+          height:75%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        .journal-table-container h2,
+        .department-table-container h2 {
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center text horizontally */
+            display: flex;
+            align-items: center; /* Vertically align text */
+            justify-content: center; /* Horizontally align text */
+        }
+
+        .department-table th,
+        .department-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            /* Apply justify-content to cells */
+
+            justify-content: space-between;
+
+        }
+        .journal-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .journal-table th,
+        .journal-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Blue download button */
+        .journal-table a {
+            text-decoration: none;
+            background-color: #007bff; /* Blue color */
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        .journal-table a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        /* Table container styling */
+        .table-container {
+            display: flex;
+            gap: 20px; /* Add space between the tables */
+            flex-wrap: wrap; /* Allow flex items to wrap */
+            margin-top: 20px;
+        }
+
+        /* Journal table styling */
+        .journal-table-container,
+        .department-table-container {
+            flex: 1; /* Expand to fill available space */
+        }
+
+        /* Table styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+        /* Dashboard container */
+        .dashboard {
+            padding: 10px; /* Adjust padding for better spacing */
+        }
+
+        /* Filter styling */
+        .filter {
+            margin-bottom: 10px; /* Adjust margin for better spacing */
+        }
+
+        /* Table container */
+        .table-container {
+            margin-top: 10px;
+            gap: 10px; /* Adjust gap for better spacing */
+        }
+
+        /* Journal table and department table containers */
+        .journal-table-container,
+        .department-table-container {
+            flex: 1;
+            width: 100%; /* Expand to full width */
+        }
+
+        /* Blue download button */
+        .journal-table a {
+            padding: 3px 8px; /* Adjust padding for better spacing */
+            font-size: 12px; /* Adjust font size for better fit */
+        }
+    }
+
+        </style>
 </head>
 <body>
-<div class="card-container2">
-    <div class="table-container">
-        <table>
-            <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Journal Title</th>
-                <th>Journal ISSN No</th>
-                <th>Publisher</th>
-                <th>Staff Name</th>
-                <th>Department</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <!-- Table rows will be dynamically generated here -->
-            </tbody>
-        </table>
-        <br>
-        <button type="button" class="manage-journal-btn" name="manage-journal">Manage</button>
+    <div class="header">
+        <h1>Admin Dashboard</h1>
+        <a href="#" class="logout">Logout</a>
     </div>
-</div>
-
-<div class="card-container">
-    <div class="department-container">
-    <h3>Departments</h3>
-        <table>
-            <tr>
-                <th>Dept Number</th>
-                <th>Dept Name</th>
-                <th>No of Faculties</th>
-            </tr>
-            <tbody>
-                {% for department in departments %}
-                <tr>
-                    <td>{{ department.dept_number }}</td>
-                    <td>{{ department.dept_name }}</td>
-                    <td>{{ department.no_faculty }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
-        <button type="button" class="dept-add-btn" name="dept-add-btn">Add Dept</button>
+    <div class="dashboard">
+        <div class="filter">
+            <label for="filter-select">Filter by Department:</label>
+            <select id="filter-select">
+                <option value="all">All</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="AIDS">AIDS</option>
+                <option value="MECH">MECH</option>
+                <option value="MECHO">MECHO</option>
+            </select>
+        </div>
+        <div class="table-container">
+            <div class="table journal-table-container">
+                <h2>Published Journals</h2>
+                <table class="journal-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Journal Title</th>
+                            <th>Journal ISSN No</th>
+                            <th>Publisher</th>
+                            <th>Staff Name</th>
+                            <th>Department</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Journal 1</td>
+                            <td>1234-5678</td>
+                            <td>ABC Publications</td>
+                            <td>John Doe</td>
+                            <td>Science</td>
+                            <td><a href="journal1.pdf" download>Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Journal 2</td>
+                            <td>5678-1234</td>
+                            <td>XYZ Publishers</td>
+                            <td>Jane Smith</td>
+                            <td>Engineering</td>
+                            <td><a href="journal2.pdf" download>Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Journal 2</td>
+                            <td>5678-1234</td>
+                            <td>XYZ Publishers</td>
+                            <td>Jane Smith</td>
+                            <td>Engineering</td>
+                            <td><a href="journal2.pdf" download>Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Journal 2</td>
+                            <td>5678-1234</td>
+                            <td>XYZ Publishers</td>
+                            <td>Jane Smith</td>
+                            <td>Engineering</td>
+                            <td><a href="journal2.pdf" download>Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Journal 2</td>
+                            <td>5678-1234</td>
+                            <td>XYZ Publishers</td>
+                            <td>Jane Smith</td>
+                            <td>Engineering</td>
+                            <td><a href="journal2.pdf" download>Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Journal 2</td>
+                            <td>5678-1234</td>
+                            <td>XYZ Publishers</td>
+                            <td>Jane Smith</td>
+                            <td>Engineering</td>
+                            <td><a href="journal2.pdf" download>Download</a></td>
+                        </tr>
+                        <!-- Add more journal entries here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table department-table-container">
+                <h2>Departments</h2>
+                <table class="department-table">
+                    <thead>
+                    <tr>
+                        <th>Dept Number</th>
+                        <th>Dept Name</th>
+                        <th>No of Faculties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>CSE</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>ECE</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>EEE</td>
+                        <td>18</td>
+                    </tr>
+                    <!-- Add more department entries here -->
+                </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
-
-<!--login-form-wrap-->
-</div><!--card-container-->
 </body>
 </html>
