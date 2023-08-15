@@ -29,8 +29,9 @@ class Journals(models.Model):
     issn_no = models.IntegerField()
     publisher = models.CharField(max_length=40)
     staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, related_name='journals')
-    name_journal = models.CharField(max_length=50)
+    # name_journal = models.CharField(max_length=50)
     department = models.ForeignKey(Departments, on_delete=models.SET_NULL, null=True, related_name='journals')
+    journal_doc = models.FileField(null=True, blank=True)
 
     def __str__(self):
         return self.title

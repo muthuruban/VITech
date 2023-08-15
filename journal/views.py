@@ -48,6 +48,27 @@ def staff_home(request):
     return render(request, 'staff_home.html', {'user': user})
 
 
+def upload_journal(request):
+    if request.method == 'POST':
+        journalTitle = request.POST.get('journalTitle')
+        journalISSN = request.POST.get('journalISSN')
+        publisher = request.POST.get('publisher')
+        department = request.POST.get('department')
+        journalFile = request.FILES['journalFile']
+        print(journalTitle)
+        print(journalISSN)
+        print(publisher)
+        print(department)
+        # print(journalFile)
+        journal = Journals.objects.create(title=journalTitle, issn_no=journalISSN, publisher=publisher,
+                                          staff=Staff.objects.get(username=request.user),
+                                          department=Departments.objects.get(dept_name=department),
+                                          journal_doc=journalFile)
+        journal.save()
+        return redirect('staff_home')
+    return render(request, 'journal_form.html')
+
+
 def staff_logout(request):
     logout(request)
     return redirect('index')
@@ -85,5 +106,5 @@ def add_department(request):
         # dept_number = request.POST.get('dept_number')
         dept = Departments.objects.create(dept_number=dept_number, dept_name=dept_name)
         dept.save()
-        return redirect('index')
-    return render(request, 'admin_dashboard.html')
+        return redirect('admin_dashboard')
+    return render(request, 'add_department.html')

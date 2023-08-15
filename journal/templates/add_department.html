@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("img_nature.jpg");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  margin: auto;
+  width: 50%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 50px; /* Adjusted padding for better appearance */
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Full-width input fields */
+input[type="text"], select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+input[type="text"]:focus,select:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #08a76d;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+/* Adjusted styles for dropdown */
+.container select {
+  padding: 15px;
+}
+
+/* Laptop view */
+@media (min-width: 992px) {
+  .container {
+    width: 40%;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 767px) {
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+
+<h2></h2>
+<div class="bg-img">
+    <form action=" " class="container" method="post">
+        {% csrf_token %}
+        <h1>Add Department</h1>
+        <label for="dept_number"><b>Department Number</b></label>
+        <input type="text" id="dept_number" placeholder="Department Number" name="dept_number" required>
+
+        <label for="dept_name"><b>Department Name</b></label>
+        <input type="text" id="dept_name" placeholder="Department Name" name="dept_name" required>
+
+        <button type="submit" class="btn">Add Department</button>
+    </form>
+</div>
+
+</body>
+</html>

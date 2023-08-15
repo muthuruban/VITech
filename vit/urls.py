@@ -13,6 +13,7 @@ urlpatterns = [
     # Staff
     path('staff/signup/', views.staff_signup, name='staff_signup'),
     path('staff/home/', views.staff_home, name='staff_home'),
+    path('staff/upload-journal/', views.upload_journal, name='upload_journal'),
     path('staff/logout/', views.staff_logout, name='staff_logout'),
 
     # Admin
