@@ -1,11 +1,11 @@
 .card-container {
     position: fixed;
     top: 20px;
-    right: 3%;
+    right: 30px;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    width: auto;
+    width: 30%;
     height: auto;
 }
 

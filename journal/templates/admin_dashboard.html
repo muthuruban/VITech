@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <!--    <link rel="stylesheet" href="styles.css">-->
     <title>Admin Dashboard</title>
-    <style>/* Reset some default styles */
-
-
-        /* Basic styling for the dashboard */
+    <style>
         .dashboard {
             padding: 20px;
             background-color: #f4f4f4;
         }
 
-        /* Header styling */
         .header {
             display: flex;
             justify-content: space-between;
@@ -31,7 +27,6 @@
             border-radius: 5px;
         }
 
-        /* Filter styling */
         .filter {
             margin-bottom: 20px;
         }
@@ -43,11 +38,11 @@
         }
         .journal-table-container h2,
         .department-table-container h2 {
-            margin: 0; /* Remove default margin */
-            text-align: center; /* Center text horizontally */
+            margin: 0;
+            text-align: center;
             display: flex;
-            align-items: center; /* Vertically align text */
-            justify-content: center; /* Horizontally align text */
+            align-items: center;
+            justify-content: center;
         }
 
         .department-table th,
@@ -55,8 +50,6 @@
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
-            /* Apply justify-content to cells */
-
             justify-content: space-between;
 
         }
@@ -76,32 +69,29 @@
         /* Blue download button */
         .journal-table a {
             text-decoration: none;
-            background-color: #007bff; /* Blue color */
+            background-color: #007bff;
             color: #fff;
             padding: 5px 10px;
             border-radius: 5px;
             display: inline-block;
-            transition: background-color 0.3s ease; /* Add a smooth transition effect */
+            transition: background-color 0.3s ease;
         }
 
         .journal-table a:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
         }
-        /* Table container styling */
         .table-container {
             display: flex;
-            gap: 20px; /* Add space between the tables */
-            flex-wrap: wrap; /* Allow flex items to wrap */
+            gap: 20px;
+            flex-wrap: wrap;
             margin-top: 20px;
         }
 
-        /* Journal table styling */
         .journal-table-container,
         .department-table-container {
-            flex: 1; /* Expand to fill available space */
+            flex: 1;
         }
 
-        /* Table styling */
         .table {
             width: 100%;
             border-collapse: collapse;
@@ -115,163 +105,104 @@
             text-align: center;
         }
 
-        /* Mobile responsiveness */
         @media (max-width: 768px) {
-        /* Dashboard container */
         .dashboard {
-            padding: 10px; /* Adjust padding for better spacing */
+            padding: 10px;
         }
 
-        /* Filter styling */
         .filter {
-            margin-bottom: 10px; /* Adjust margin for better spacing */
+            margin-bottom: 10px;
         }
 
-        /* Table container */
         .table-container {
             margin-top: 10px;
-            gap: 10px; /* Adjust gap for better spacing */
+            gap: 10px;
         }
 
-        /* Journal table and department table containers */
         .journal-table-container,
         .department-table-container {
             flex: 1;
-            width: 100%; /* Expand to full width */
+            width: 100%;
         }
 
-        /* Blue download button */
         .journal-table a {
-            padding: 3px 8px; /* Adjust padding for better spacing */
-            font-size: 12px; /* Adjust font size for better fit */
+            padding: 3px 8px;
+            font-size: 12px;
         }
     }
 
-        </style>
+
+    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Admin Dashboard</h1>
-        <a href="#" class="logout">Logout</a>
+<div class="header">
+    <h1>Admin Dashboard</h1>
+    <a href="#" class="logout">Logout</a>
+</div>
+<div class="dashboard">
+    <div class="filter">
+        <label for="filter-select">Filter by Department:</label>
+        <select id="filter-select">
+            <option value="">All</option>
+            {% for department in departments %}
+            <option value="{{ department.dept_name }}">{{ department.dept_name }}</option>
+            {% endfor %}
+        </select>
     </div>
-    <div class="dashboard">
-        <div class="filter">
-            <label for="filter-select">Filter by Department:</label>
-            <select id="filter-select">
-                <option value="all">All</option>
-                <option value="CSE">CSE</option>
-                <option value="ECE">ECE</option>
-                <option value="EEE">EEE</option>
-                <option value="AIDS">AIDS</option>
-                <option value="MECH">MECH</option>
-                <option value="MECHO">MECHO</option>
-            </select>
-        </div>
-        <div class="table-container">
-            <div class="table journal-table-container">
-                <h2>Published Journals</h2>
-                <table class="journal-table">
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Journal Title</th>
-                            <th>Journal ISSN No</th>
-                            <th>Publisher</th>
-                            <th>Staff Name</th>
-                            <th>Department</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Journal 1</td>
-                            <td>1234-5678</td>
-                            <td>ABC Publications</td>
-                            <td>John Doe</td>
-                            <td>Science</td>
-                            <td><a href="journal1.pdf" download>Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Journal 2</td>
-                            <td>5678-1234</td>
-                            <td>XYZ Publishers</td>
-                            <td>Jane Smith</td>
-                            <td>Engineering</td>
-                            <td><a href="journal2.pdf" download>Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Journal 2</td>
-                            <td>5678-1234</td>
-                            <td>XYZ Publishers</td>
-                            <td>Jane Smith</td>
-                            <td>Engineering</td>
-                            <td><a href="journal2.pdf" download>Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Journal 2</td>
-                            <td>5678-1234</td>
-                            <td>XYZ Publishers</td>
-                            <td>Jane Smith</td>
-                            <td>Engineering</td>
-                            <td><a href="journal2.pdf" download>Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Journal 2</td>
-                            <td>5678-1234</td>
-                            <td>XYZ Publishers</td>
-                            <td>Jane Smith</td>
-                            <td>Engineering</td>
-                            <td><a href="journal2.pdf" download>Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Journal 2</td>
-                            <td>5678-1234</td>
-                            <td>XYZ Publishers</td>
-                            <td>Jane Smith</td>
-                            <td>Engineering</td>
-                            <td><a href="journal2.pdf" download>Download</a></td>
-                        </tr>
-                        <!-- Add more journal entries here -->
-                    </tbody>
-                </table>
-            </div>
-            <div class="table department-table-container">
-                <h2>Departments</h2>
-                <table class="department-table">
-                    <thead>
-                    <tr>
-                        <th>Dept Number</th>
-                        <th>Dept Name</th>
-                        <th>No of Faculties</th>
-                    </tr>
+    <div class="table-container">
+        <div class="table journal-table-container">
+            <h2>Published Journals</h2>
+            <table class="journal-table">
+                <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Journal Title</th>
+                    <th>Journal ISSN No</th>
+                    <th>Publisher</th>
+                    <th>Staff Name</th>
+                    <th>Department</th>
+                    <th>Download</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>101</td>
-                        <td>CSE</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>102</td>
-                        <td>ECE</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>103</td>
-                        <td>EEE</td>
-                        <td>18</td>
-                    </tr>
-                    <!-- Add more department entries here -->
+                {% for journal in journals %}
+                <tr>
+                    <td>1</td>
+                    <td>{{ journal.title }}</td>
+                    <td>{{ journal.issn_no }}</td>
+                    <td>{{ journal.publisher }}</td>
+                    <td>{{ journal.staff.staff_name }}</td>
+                    <td>{{ journal.department.dept_name }}</td>
+                    <td><a href="#" download>Download</a></td>
+                </tr>
+                {% endfor %}
                 </tbody>
-                </table>
-            </div>
+            </table>
+        </div>
+        <div class="table department-table-container">
+            <h2>Departments</h2>
+            <table class="department-table">
+                <thead>
+                <tr>
+                    <th>Dept Number</th>
+                    <th>Dept Name</th>
+                    <th>No of Faculties</th>
+                    <th>No of Journals</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.dept_number }}</td>
+                    <td>{{ department.dept_name }}</td>
+                    <td>{{ department.no_faculty }}</td>
+                    <td>{{ department.no_journals }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 </body>
 </html>
