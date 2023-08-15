@@ -35,7 +35,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 85%;
             margin: 2rem auto;
             padding: 1rem;
             background-color: #fff;
@@ -70,9 +70,9 @@
     </header>
     <div class="container">
         <h2>Personal Information</h2>
-        <p><strong>Full Name:</strong> John Doe</p>
-        <p><strong>Staff ID:</strong> 12345</p>
-        <p><strong>Department:</strong> Computer Science</p>
+        <p><strong>Full Name:</strong> {{ user.name }}</p>
+        <p><strong>Staff ID:</strong> {{ user.staff_id }}</p>
+        <p><strong>Department:</strong>{{ user.dept_name }}</p>
 
         <h2>Journal List</h2>
         <table>
@@ -81,19 +81,24 @@
                 <th>Journal Title</th>
                 <th>Journal ISSN No</th>
                 <th>Publisher</th>
-                <th>Staff Name</th>
                 <th>Department</th>
                 <th>View</th>
             </tr>
+            {% for journal in journals %}
             <tr>
                 <td>1</td>
-                <td>Sample Journal</td>
-                <td>12345678</td>
-                <td>Publisher X</td>
-                <td>John Doe</td>
-                <td>Computer Science</td>
-                <td><a href="#">View</a></td>
+                <td>{{ journal.title }}</td>
+                <td>{{ journal.issn_no }}</td>
+                <td>{{ journal.publisher }}</td>
+                <td>{{ journal.department.dept_name }}</td>
+                <td><a type="button" href="{% url 'download_journal' journal.id %}">Download</a></td>
             </tr>
+            {% empty %}
+            <tr>
+                <td></td>
+                <td>No Journal Published so far</td>
+            </tr>
+            {% endfor %}
         </table>
         <br>
         <a type="button" href="{% url 'upload_journal' %}">Upload Journal</a>

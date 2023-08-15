@@ -1,6 +1,10 @@
+import mimetypes
+import os
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from journal.forms import StaffLoginForm, StaffSignupForm, AdminLoginForm
@@ -45,7 +49,8 @@ def staff_signup(request):
 @login_required(login_url='index')
 def staff_home(request):
     user = Staff.objects.get(username=request.user)
-    return render(request, 'staff_home.html', {'user': user})
+    journals = Journals.objects.all()
+    return render(request, 'staff_home.html', {'user': user, 'journals': journals})
 
 
 def upload_journal(request):
@@ -69,7 +74,7 @@ def upload_journal(request):
     return render(request, 'journal_form.html')
 
 
-def staff_logout(request):
+def _logout(request):
     logout(request)
     return redirect('index')
 
@@ -96,6 +101,19 @@ def admin_view(request):
     journals = Journals.objects.all()
     departments = Departments.objects.all()
     return render(request, 'admin_dashboard.html', {'journals': journals, 'departments': departments})
+
+
+def download_journal(request, journal_id):
+    journals = Journals.objects.get(id=journal_id)
+    filename = str(journals.journal_doc)
+    if filename != '':
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        filepath = BASE_DIR + '/media/' + filename
+        path = open(filepath, 'rb')
+        mime_type, _ = mimetypes.guess_type(filepath)
+        response = HttpResponse(path, content_type=mime_type)
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        return response
 
 
 def add_department(request):

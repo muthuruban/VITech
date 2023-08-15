@@ -152,7 +152,7 @@
 <body>
 <div class="header">
     <h1>Admin Dashboard</h1>
-    <a href="#" class="logout">Logout</a>
+    <a href="{% url 'logout' %}" class="logout">Logout</a>
 </div>
 <div class="dashboard">
     <div class="filter">
@@ -186,9 +186,9 @@
                     <td>{{ journal.title }}</td>
                     <td>{{ journal.issn_no }}</td>
                     <td>{{ journal.publisher }}</td>
-                    <td>{{ journal.staff.staff_name }}</td>
+                    <td>{{ journal.staff.name }}</td>
                     <td>{{ journal.department.dept_name }}</td>
-                    <td><a href="#" download>Download</a></td>
+                    <td><a href="{% url 'download_journal' journal.id %}">Download</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
