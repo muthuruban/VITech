@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from journal.forms import StaffLoginForm, StaffSignupForm, AdminLoginForm
-from journal.models import Departments
+from journal.models import Departments, Journals, Staff
 
 
 # Create your views here.
@@ -44,8 +44,13 @@ def staff_signup(request):
 
 @login_required(login_url='index')
 def staff_home(request):
-    user = request.user
+    user = Staff.objects.get(username=request.user)
     return render(request, 'staff_home.html', {'user': user})
+
+
+def staff_logout(request):
+    logout(request)
+    return redirect('index')
 
 
 def admin_login(request):
@@ -65,9 +70,11 @@ def admin_login(request):
     return render(request, 'admin_login.html', {'form': form})
 
 
+@login_required(login_url='admin_login')
 def admin_view(request):
+    journals = Journals.objects.all()
     departments = Departments.objects.all()
-    return render(request, 'admin_dashboard.html',{'departments': departments})
+    return render(request, 'admin_dashboard.html', {'journals': journals, 'departments': departments})
 
 
 def add_department(request):
@@ -75,7 +82,6 @@ def add_department(request):
     if request.method == 'POST':
         dept_number = request.POST.get('dept_number')
         dept_name = request.POST.get('dept_name')
-
         # dept_number = request.POST.get('dept_number')
         dept = Departments.objects.create(dept_number=dept_number, dept_name=dept_name)
         dept.save()

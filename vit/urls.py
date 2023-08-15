@@ -13,6 +13,7 @@ urlpatterns = [
     # Staff
     path('staff/signup/', views.staff_signup, name='staff_signup'),
     path('staff/home/', views.staff_home, name='staff_home'),
+    path('staff/logout/', views.staff_logout, name='staff_logout'),
 
     # Admin
     path('admin/', views.admin_login, name='admin_login'),

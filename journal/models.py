@@ -19,15 +19,16 @@ class Staff(AbstractUser):
     mail_id = models.EmailField(max_length=40)
     phone_number = models.CharField(max_length=10)
     date_birth = models.DateField(null=True, blank=True)
-    dept_name = models.CharField(max_length=15,blank=True)
+    dept_name = models.CharField(max_length=15, blank=True)
     staff_id = models.CharField(max_length=20)
-    date_Ofjoin = models.DateField(null=True,blank=True)
+    date_Ofjoin = models.DateField(null=True, blank=True)
+
 
 class Journals(models.Model):
     title = models.CharField(max_length=50)
     issn_no = models.IntegerField()
     publisher = models.CharField(max_length=40)
-    staff_name = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, related_name='journals')
+    staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, related_name='journals')
     name_journal = models.CharField(max_length=50)
     department = models.ForeignKey(Departments, on_delete=models.SET_NULL, null=True, related_name='journals')
 
