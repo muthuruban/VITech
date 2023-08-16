@@ -13,12 +13,12 @@
             background-color: #f5f5f5;
         }
 
-        header {
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
+        /*header {*/
+        /*    background-color: #007bff;*/
+        /*    color: #fff;*/
+        /*    text-align: center;*/
+        /*    padding: 1rem 0;*/
+        /*}*/
         a {
             margin-top: 5px;
             text-decoration: none;
@@ -41,6 +41,27 @@
             background-color: #fff;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
+        }
+        .logout {
+            text-decoration: none;
+            color: #fff;
+
+
+            background-color: #4caf50;
+            padding: 5px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-left: 3rem;
+            margin-right: 3rem;
+        }
+        .mange{
+            color: #00CC00;
         }
 
         table {
@@ -67,6 +88,7 @@
 <body>
     <header>
         <h1>Journal Information</h1>
+        <a href="{% url 'logout' %}" class="logout">Logout</a>
     </header>
     <div class="container">
         <h2>Personal Information</h2>
@@ -101,7 +123,10 @@
             {% endfor %}
         </table>
         <br>
-        <a type="button" href="{% url 'upload_journal' %}">Upload Journal</a>
+
+        <a type="button" href="{% url 'upload_journal' %}" class="logout">Upload Journal</a>
+         <a type="button" href="{% url 'upload_journal' %}">Manage Journal</a>
+
     </div>
 </body>
 </html>
